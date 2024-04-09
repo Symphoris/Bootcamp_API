@@ -3,14 +3,18 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const colors = require("colors");
 
+const app = express();
 //load env vars
 dotenv.config({ path: "./config/config.env" });
 
 // Route file
 const bootcamps = require("./routes/bootcamps");
 
+//Body parser
+app.use(express.json());
+
 connectDB();
-const app = express();
+
 const PORT = process.env.PORT;
 
 app.use("/api/v1/bootcamps", bootcamps);
